@@ -39,17 +39,22 @@ public class Model {
 				DefaultWeightedEdge e=this.grafo.addEdge(partenza, destinazione);
 				this.grafo.setEdgeWeight(e, t.getMedia());
 			} else {
+				//se l'arco c'è già il suo peso diventa la media di quello precedente e quello che sarebbe ora 
 				DefaultWeightedEdge ee=this.grafo.getEdge(partenza, destinazione);
-//				double nuovaMedia=t.getMedia()+
-				this.grafo.setEdgeWeight(ee, t.getMedia());
+				double pesoVecchio=this.grafo.getEdgeWeight(ee);
+				double nuovaMedia=(t.getMedia()+ pesoVecchio) /2;
+				this.grafo.setEdgeWeight(ee, nuovaMedia);
 			}
 			
 			
 		}
 		
-		System.out.println(grafo);
-		System.out.println(grafo.vertexSet().size());
-		System.out.println(grafo.edgeSet().size());
     }
+
+
+	public Graph<Airport, DefaultWeightedEdge> getGrafo() {
+		return grafo;
+	}
+
 
 }
